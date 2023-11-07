@@ -1,7 +1,12 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Betea_Bianca_LAB2.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<Betea_Bianca_LAB2Context>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Betea_Bianca_LAB2Context") ?? throw new InvalidOperationException("Connection string 'Betea_Bianca_LAB2Context' not found.")));
 
 var app = builder.Build();
 
