@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Security.Policy;
 
 namespace Betea_Bianca_LAB2.Models
 {
@@ -13,5 +14,7 @@ namespace Betea_Bianca_LAB2.Models
         public decimal Price { get; set; }
         [DataType(DataType.Date)]
         public DateTime PublishingDate { get; set; }
-    }
+        public int? PublisherID { get; set; }
+        public Publisher? Publisher { get; set; } } //navigation property
 }
+ 

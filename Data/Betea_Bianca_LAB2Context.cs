@@ -15,5 +15,7 @@ namespace Betea_Bianca_LAB2.Data
         }
 
         public DbSet<Betea_Bianca_LAB2.Models.Book> Book { get; set; } = default!;
+
+        public DbSet<Betea_Bianca_LAB2.Models.Publisher>? Publisher { get; set; }
     }
 }

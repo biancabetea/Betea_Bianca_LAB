@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Betea_Bianca_LAB2.Data;
 using Betea_Bianca_LAB2.Models;
 
-namespace Betea_Bianca_LAB2.Pages.Books
+namespace Betea_Bianca_LAB2.Pages
 {
     public class CreateModel : PageModel
     {
@@ -21,24 +21,22 @@ namespace Betea_Bianca_LAB2.Pages.Books
 
         public IActionResult OnGet()
         {
-            ViewData["PublisherID"] = new SelectList(_context.Set<Publisher>(), "ID",
- "PublisherName");
             return Page();
         }
 
         [BindProperty]
-        public Book Book { get; set; } = default!;
+        public Publisher Publisher { get; set; } = default!;
         
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.Book == null || Book == null)
+          if (!ModelState.IsValid || _context.Publisher == null || Publisher == null)
             {
                 return Page();
             }
 
-            _context.Book.Add(Book);
+            _context.Publisher.Add(Publisher);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
