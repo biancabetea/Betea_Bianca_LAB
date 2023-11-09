@@ -20,9 +20,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Book.AuthorID" class="control-label">Author Name</label>
-                <select asp-for="Book.AuthorID" asp-items="@(new SelectList(ViewBag.Authors, "ID", "FullName"))" class="form-control">
-                    <option value="">-- Select Author --</option>
-                </select>
+                <select asp-for="Book.AuthorID" class="form-control" asp-items="ViewBag.AuthorID"></select>
                 <span asp-validation-for="Book.AuthorID" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -33,15 +31,15 @@
             <div class="form-group">
                 <label asp-for="Book.PublishingDate" class="control-label"></label>
                 <input asp-for="Book.PublishingDate" class="form-control" />
-                <span asp-validation-for="Book.PublishingDate" class="text-danger"></span>
+                <span asp-validation-for="Book.PublishingDate" class="textdanger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Book.PublisherID" class="control-label">Publisher Name</label>
-                <select asp-for="Book.PublisherID" asp-items="@(new SelectList(ViewBag.Publishers, "ID", "PublisherName"))" class="form-control">
-                    <option value="">-- Select Publisher --</option>
+                <select asp-for="Book.PublisherID" class="form-control" asp-items="ViewBag.PublisherID">
                 </select>
                 <span asp-validation-for="Book.PublisherID" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

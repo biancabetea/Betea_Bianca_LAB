@@ -20,7 +20,7 @@ namespace Betea_Bianca_LAB2.Pages.Books
         }
 
         [BindProperty]
-      public Book Book { get; set; } = default!;
+        public Book Book { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -35,7 +35,7 @@ namespace Betea_Bianca_LAB2.Pages.Books
             {
                 return NotFound();
             }
-            else 
+            else
             {
                 Book = book;
             }
