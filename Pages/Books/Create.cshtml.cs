@@ -21,19 +21,19 @@ namespace Betea_Bianca_LAB2.Pages.Books
 
         public IActionResult OnGet()
         {
-            ViewData["PublisherID"] = new SelectList(_context.Set<Publisher>(), "ID",
- "PublisherName");
+            // Asigură-te că AuthorName este un câmp valid în clasa Author
+            ViewData["AuthorID"] = new SelectList(_context.Set<Author>(), "ID", "AuthorName");
+            ViewData["PublisherID"] = new SelectList(_context.Set<Publisher>(), "ID", "PublisherName");
             return Page();
         }
 
         [BindProperty]
-        public Book Book { get; set; } = default!;
-        
+        public Book Book { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.Book == null || Book == null)
+            if (!ModelState.IsValid || _context.Book == null || Book == null)
             {
                 return Page();
             }
@@ -45,3 +45,5 @@ namespace Betea_Bianca_LAB2.Pages.Books
         }
     }
 }
+
+
