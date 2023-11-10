@@ -24,7 +24,7 @@ namespace Betea_Bianca_LAB2.Models
 
         public int? PublisherID { get; set; }
         public Publisher? Publisher { get; set; }
-
+        public string BookCategories { get; set; }
     }
 }
 

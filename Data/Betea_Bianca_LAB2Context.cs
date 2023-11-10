@@ -18,5 +18,6 @@ namespace Betea_Bianca_LAB2.Data
 
         public DbSet<Betea_Bianca_LAB2.Models.Publisher>? Publisher { get; set; }
         public DbSet<Betea_Bianca_LAB2.Models.Author>? Author { get; set; }
+        public IEnumerable<object> Category { get; internal set; }
     }
 }
