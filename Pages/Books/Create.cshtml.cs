@@ -26,9 +26,8 @@ namespace Betea_Bianca_LAB2.Pages.Books
              });
             */
             // daca am adaugat o proprietate FullName in clasa Author
-            ViewData["AuthorID"] = new SelectList(uthorList, "ID", "FullName");
-            ViewData["PublisherID"] = new SelectList(_context.Publisher, "ID",
-           "PublisherName");
+            ViewData["AuthorID"] = new SelectList(_context.Set<Author>(), "ID", "FullName");
+            ViewData["PublisherID"] = new SelectList(_context.Set<Publisher>(), "ID", "PublisherName");
 
             var book = new Book();
             book.BookCategories = new List<BookCategory>();
