@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "/"
 @model Betea_Bianca_LAB2.Pages.Books.IndexModel
 
 @{
@@ -27,12 +27,21 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Book[0].Publisher.PublisherName)
+            <th>
+                    @Html.DisplayNameFor(model => model.Book[0].BookCategories)
             </th>
 
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Book)
+      @foreach (var item in Model.BookD.Books) {
+ string selectedRow = "";
+ if (item.ID == Model.BookID)
+ {
+ selectedRow = "table-success";
+ }
+ <tr class="@selectedRow">
+        
         {
             <tr>
                 <td>
@@ -54,6 +63,14 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Publisher.PublisherName)
+                </td>
+                <td>
+                        @{
+                            foreach (var category in item.BookCategories)
+                            {
+                                @category.Category.ID @: @category.Category.CategoryName <br />
+                            }
+                        }
                 </td>
 
 
