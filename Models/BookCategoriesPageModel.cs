@@ -2,7 +2,7 @@
 using Betea_Bianca_LAB2.Data;
 namespace Betea_Bianca_LAB2.Models
 {
-    public class BookCategoriesPageMode :PageModel
+    public class BookCategoriesPageModel :PageModel
     { 
  public List<AssignedCategoryData> AssignedCategoryDataList;
         public void PopulateAssignedCategoryData(Betea_Bianca_LAB2Context context,
