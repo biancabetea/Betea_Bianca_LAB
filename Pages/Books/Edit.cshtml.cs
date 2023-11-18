@@ -12,6 +12,7 @@ using Betea_Bianca_LAB2.Data;
 
 namespace Betea_Bianca_LAB2.Pages.Books
 {
+    [Authorize(Roles = "Admin")]
     public class EditModel : BookCategoriesPageModel
     {
         private readonly Betea_Bianca_LAB2.Data.Betea_Bianca_LAB2Context _context;
