@@ -30,14 +30,14 @@ namespace Betea_Bianca_LAB2.Pages.Borrowings
                 return NotFound();
             }
 
-            var borrowing =  await _context.Borrowing.FirstOrDefaultAsync(m => m.ID == id);
+            var borrowing = await _context.Borrowing.FirstOrDefaultAsync(m => m.ID == id);
             if (borrowing == null)
             {
                 return NotFound();
             }
             Borrowing = borrowing;
-           ViewData["BookID"] = new SelectList(_context.Book, "ID", "ID");
-           ViewData["MemberID"] = new SelectList(_context.Member, "ID", "ID");
+            ViewData["BookID"] = new SelectList(_context.Book, "ID", "Title");
+            ViewData["MemberID"] = new SelectList(_context.Member, "ID", "FullName");
             return Page();
         }
 
@@ -73,7 +73,7 @@ namespace Betea_Bianca_LAB2.Pages.Borrowings
 
         private bool BorrowingExists(int id)
         {
-          return (_context.Borrowing?.Any(e => e.ID == id)).GetValueOrDefault();
+            return (_context.Borrowing?.Any(e => e.ID == id)).GetValueOrDefault();
         }
     }
 }
