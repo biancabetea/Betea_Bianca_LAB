@@ -8,12 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<Betea_Bianca_LAB2Context>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Betea_Bianca_LAB2Context") ?? throw new InvalidOperationException("Connection string 'Betea_Bianca_LAB2Context' not found.")));
-builder.Services.AddDbContext<LibraryIdentityContext>(options =>
 
-options.UseSqlServer(builder.Configuration.GetConnectionString("Betea_Bianca_LAB2Context") ?? throw new InvalidOperationException("Connectionstring 'Betea_Bianca_LAB2Context' not found.")));
-builder.Services.AddDefaultIdentity<IdentityUser>(options =>
-options.SignIn.RequireConfirmedAccount = true)
- .AddEntityFrameworkStores<LibraryIdentityContext>();
+builder.Services.AddDbContext<LibraryIdentityContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("LibraryIdentityContextConnection") ?? throw new InvalidOperationException("Connection string 'LibraryIdentityContextConnection' not found.")));
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<LibraryIdentityContext>();
@@ -32,7 +29,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-app.UseAuthentication();;
+app.UseAuthentication(); ;
 
 app.UseAuthorization();
 
