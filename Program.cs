@@ -5,6 +5,12 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminPolicy", policy =>
+   policy.RequireRole("Admin"));
+});
+
 
 // Add services to the container.
 builder.Services.AddRazorPages(options =>
@@ -13,6 +19,7 @@ builder.Services.AddRazorPages(options =>
 
 options.Conventions.AllowAnonymousToPage("/Books/Index");
 options.Conventions.AllowAnonymousToPage("/Books/Details");
+    options.Conventions.AuthorizeFolder("/Members", "AdminPolicy");
 });
 builder.Services.AddDbContext<Betea_Bianca_LAB2Context>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Betea_Bianca_LAB2Context") ?? throw new InvalidOperationException("Connection string 'Betea_Bianca_LAB2Context' not found.")));
