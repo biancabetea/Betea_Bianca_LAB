@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Betea_Bianca_LAB2.Data;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace Betea_Bianca_LAB2.Pages.Books
 {

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Betea_Bianca_LAB2.Migrations
 {
     [DbContext(typeof(Betea_Bianca_LAB2Context))]
-    [Migration("20231116142047_BookCategory")]
-    partial class BookCategory
+    [Migration("20231120155826_test")]
+    partial class test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,11 +26,11 @@ namespace Betea_Bianca_LAB2.Migrations
 
             modelBuilder.Entity("Betea_Bianca_LAB2.Models.Author", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int?>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("ID"), 1L, 1);
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -100,6 +100,32 @@ namespace Betea_Bianca_LAB2.Migrations
                     b.ToTable("BookCategory");
                 });
 
+            modelBuilder.Entity("Betea_Bianca_LAB2.Models.Borrowing", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<int?>("BookID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("MemberID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ReturnDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("BookID");
+
+                    b.HasIndex("MemberID");
+
+                    b.ToTable("Borrowing");
+                });
+
             modelBuilder.Entity("Betea_Bianca_LAB2.Models.Category", b =>
                 {
                     b.Property<int>("ID")
@@ -115,6 +141,38 @@ namespace Betea_Bianca_LAB2.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Category");
+                });
+
+            modelBuilder.Entity("Betea_Bianca_LAB2.Models.Member", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<string>("Adress")
+                        .HasMaxLength(70)
+                        .HasColumnType("nvarchar(70)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("LastName")
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Member");
                 });
 
             modelBuilder.Entity("Betea_Bianca_LAB2.Models.Publisher", b =>
@@ -168,6 +226,21 @@ namespace Betea_Bianca_LAB2.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("Betea_Bianca_LAB2.Models.Borrowing", b =>
+                {
+                    b.HasOne("Betea_Bianca_LAB2.Models.Book", "Book")
+                        .WithMany()
+                        .HasForeignKey("BookID");
+
+                    b.HasOne("Betea_Bianca_LAB2.Models.Member", "Member")
+                        .WithMany("Borrowings")
+                        .HasForeignKey("MemberID");
+
+                    b.Navigation("Book");
+
+                    b.Navigation("Member");
+                });
+
             modelBuilder.Entity("Betea_Bianca_LAB2.Models.Author", b =>
                 {
                     b.Navigation("Books");
@@ -181,6 +254,11 @@ namespace Betea_Bianca_LAB2.Migrations
             modelBuilder.Entity("Betea_Bianca_LAB2.Models.Category", b =>
                 {
                     b.Navigation("BookCategories");
+                });
+
+            modelBuilder.Entity("Betea_Bianca_LAB2.Models.Member", b =>
+                {
+                    b.Navigation("Borrowings");
                 });
 
             modelBuilder.Entity("Betea_Bianca_LAB2.Models.Publisher", b =>

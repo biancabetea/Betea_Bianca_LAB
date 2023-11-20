@@ -57,7 +57,7 @@ namespace Betea_Bianca_LAB2.Pages.Authors
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AuthorExists(Author.ID))
+                if (!AuthorExists(Author.ID.Value))
                 {
                     return NotFound();
                 }
